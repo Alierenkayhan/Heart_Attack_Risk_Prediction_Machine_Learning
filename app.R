@@ -1,5 +1,5 @@
 # Load required libraries
-packages_to_install <- c("shiny", "e1071", "plotly", "ggplot2", "caret", "class", "C50", "party", "partykit")
+packages_to_install <- c("shiny", "e1071", "plotly", "ggplot2", "caret", "class", "C50", "party", "partykit","rsconnect")
 
 library(shiny)
 library(e1071)
@@ -10,7 +10,9 @@ library(class)
 library(C50)
 library(party)
 library(partykit)
+library(rsconnect)
 
+ 
 # Define UI
 ui <- fluidPage(
   tags$head(
@@ -66,8 +68,8 @@ ui <- fluidPage(
         tags$li("C50: Original by Ross Quinlan. Modernized and maintained by Thomas B??hler, Torsten Hothorn, Kurt Hornik, Lars Kuhnt and Gero Szepannek. (2021). C50: C5.0 Decision Trees and Rule-Based Models. R package version 0.1.3."),
         tags$li("party: Torsten Hothorn, Kurt Hornik, Achim Zeileis (2006). Unbiased Recursive Partitioning: A Conditional Inference Framework. Journal of Computational and Graphical Statistics 15(3), 651-674. DOI 10.1198/106186006X133933."),
         tags$li("partykit: Torsten Hothorn, Achim Zeileis (2015). partykit: A Modular Toolkit for Recursive Partytioning in R. Journal of Machine Learning Research 16(1), 390-393."),
-        
-        
+        tags$li("rsconnect: RStudio, Inc. (2021). rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications. R package version 0.8.24.")
+
        )
     ),
     div(
