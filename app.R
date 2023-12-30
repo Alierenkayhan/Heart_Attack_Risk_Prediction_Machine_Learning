@@ -1,9 +1,15 @@
 # Load required libraries
-install.packages(c("shiny", "e1071", "plotly"))
+packages_to_install <- c("shiny", "e1071", "plotly", "ggplot2", "caret", "class", "C50", "party", "partykit")
 
 library(shiny)
 library(e1071)
 library(plotly)
+library(ggplot2)
+library(caret)
+library(class)
+library(C50)
+library(party)
+library(partykit)
 
 # Define UI
 ui <- fluidPage(
@@ -50,8 +56,19 @@ ui <- fluidPage(
       h4("References"),
       tags$ul(
         tags$li(" The dataset is obtained from https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data on December 27, 2023."),
-        tags$li(" Sozan S. Maghdid , Tarik A. Rashid. (2023).Heart Disease Classification Dataset (V2 ed.). https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data")
-      )
+        tags$li(" Sozan S. Maghdid , Tarik A. Rashid. (2023).Heart Disease Classification Dataset (V2 ed.). https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data"),
+        tags$li("ggplot2: Hadley Wickham (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4."),
+        tags$li("shiny: Winston Chang, Joe Cheng, JJ Allaire, Yihui Xie and Jonathan McPherson (2021). shiny: Web Application Framework for R. R package version 1.6.0."),
+        tags$li("e1071: David Meyer, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel (2019). e1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien. R package version 1.7-6."),
+        tags$li("plotly: Carson Sievert (2021). plotly for R. R package version 4.10.0."),
+        tags$li("caret: Max Kuhn (2021). caret: Classification and Regression Training. R package version 6.0-90."),
+        tags$li("class: Original by Brian Ripley. Modernized and modified by Kurt Hornik & Albrecht Gebhardt (2019). class: Functions for Classification. R package version 7.3-15."),
+        tags$li("C50: Original by Ross Quinlan. Modernized and maintained by Thomas B??hler, Torsten Hothorn, Kurt Hornik, Lars Kuhnt and Gero Szepannek. (2021). C50: C5.0 Decision Trees and Rule-Based Models. R package version 0.1.3."),
+        tags$li("party: Torsten Hothorn, Kurt Hornik, Achim Zeileis (2006). Unbiased Recursive Partitioning: A Conditional Inference Framework. Journal of Computational and Graphical Statistics 15(3), 651-674. DOI 10.1198/106186006X133933."),
+        tags$li("partykit: Torsten Hothorn, Achim Zeileis (2015). partykit: A Modular Toolkit for Recursive Partytioning in R. Journal of Machine Learning Research 16(1), 390-393."),
+        
+        
+       )
     ),
     div(
       style = "text-align: center; margin-top: 20px;",
@@ -127,7 +144,6 @@ server <- function(input, output) {
       ))
     })
     
-    
     # Create a scatter plot
     output$scatter_plot_features <- renderPlotly({
       scatter_plot_data <- data.frame(
@@ -148,5 +164,5 @@ server <- function(input, output) {
   })
 }
 
-# Run the Shiny app
+# Run the Shiny appF
 shinyApp(ui = ui, server = server)
