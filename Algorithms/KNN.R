@@ -1,5 +1,11 @@
+# Author: Ali Eren Kayhan - Emre Yildirim
+# Date: 2023
+# Title: HeartAttack Machine Learning - KNN/Decision Tree/Naive Bayes
+# KNN
+
 ##### Reading data from a CSV file into the 'dataset' variable
-dataset <- read.table("HeartAttack.csv", header = T, sep = ",")
+file_path <- file.path("Data", "HeartAttack.csv")
+dataset <- read.table(file_path, header = T, sep = ",")
 
 ##### DATA PRE-PROCESSING
 
