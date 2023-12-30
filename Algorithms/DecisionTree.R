@@ -60,5 +60,12 @@ C5imp(C50_model, metric = "usage")
 # Making predictions on the test set using the C5.0 model
 C50_predictions <- predict(C50_model, newdata = test[,-9])
 
+# Modeli RDS format??nda kaydet
+saveRDS(C50_model, "Models/decisionTree_model.RDS")
+
 # Evaluating the performance of the C5.0 model using confusion matrix
 confusionMatrix(data = C50_predictions, reference = test[[9]], dnn = c("Predictions", "Actual/Reference"), mode = "everything", positive = "positive")
+
+# REFERENCES:
+# The dataset is obtained from https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data on December 27, 2023.
+# Sozan S. Maghdid , Tarik A. Rashid. (2023).Heart Disease Classification Dataset (V2 ed.). https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data

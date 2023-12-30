@@ -78,6 +78,13 @@ abline(v = 1:20,  lty = 2, col = "grey")
 set.seed(1)
 (knn_predictions <- knn(train = training[, -9], test = test[, -9], cl = training[[9]], k = 13))
 
+# Modeli RDS format??nda kaydet
+saveRDS(knn_predictions, "Models/knn_model.RDS")
+
 # Evaluating the performance on the test set using confusion matrix
 myConf <- confusionMatrix(data = knn_predictions, reference = test[[9]], dnn = c("Predictions", "Actual/Reference"), mode = "everything", positive = "positive")
 myConf
+
+# REFERENCES:
+# The dataset is obtained from https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data on December 27, 2023.
+# Sozan S. Maghdid , Tarik A. Rashid. (2023).Heart Disease Classification Dataset (V2 ed.). https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data
