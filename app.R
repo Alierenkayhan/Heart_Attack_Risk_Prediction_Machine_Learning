@@ -12,11 +12,11 @@ library(party)
 library(partykit)
 library(rsconnect)
 library(forecast)
-
 # Define UI
 ui <- fluidPage(
   tags$head(
-    tags$meta(charset = "UTF-8")
+    tags$meta(charset = "UTF-8"),
+    tags$link(rel = "icon", href = "/images/favicon.ico", type = "image/x-icon")
   ),
   
   titlePanel("Heart Attack Risk Prediction"),
