@@ -12,7 +12,7 @@ library(party)
 library(partykit)
 library(rsconnect)
 library(forecast)
- 
+
 # Define UI
 ui <- fluidPage(
   tags$head(
@@ -22,7 +22,11 @@ ui <- fluidPage(
   titlePanel("Heart Attack Risk Prediction"),
   
   tags$div(
-    p("This Shiny app was developed by Ali Eren Kayhan and Emre Y??ld??r??m. You can find more information by visiting  ",
+    p("This Shiny app was developed by ",
+      a("Ali Eren Kayhan", href = "https://www.linkedin.com/in/alierenkayhan/", target = "_blank"),
+      " and ",
+      a("Emre Y\u0131ld\u0131r\u0131m.", href = "https://www.linkedin.com/in/emreyildirim99/", target = "_blank"),
+      "You can find more information by visiting ",
       a("project GitHub Wiki", href = "https://github.com/Alierenkayhan/Heart_Attack_Risk_Prediction_Machine_Learning/wiki", target = "_blank"),
       "."
     )
@@ -74,7 +78,11 @@ ui <- fluidPage(
     ),
     div(
       style = "text-align: center; margin-top: 20px;",
-      h6("This Shiny app was developed by Ali Eren Kayhan and Emre Y??ld??r??m."),
+      h6("This Shiny app was developed by ",
+         a("Ali Eren Kayhan", href = "https://www.linkedin.com/in/alierenkayhan/", target = "_blank"),
+         " and ",
+         a("Emre Y\u0131ld\u0131r\u0131m", href = "https://www.linkedin.com/in/emreyildirim99/", target = "_blank"),
+         "."),
       p("For more information, visit the ",
         a("GitHub repository", href = "https://github.com/Alierenkayhan/Heart_Attack_Risk_Prediction_Machine_Learning", target = "_blank"),
         "."
@@ -84,7 +92,7 @@ ui <- fluidPage(
 )
  
 
-# Define server
+# Define servers
 server <- function(input, output) {
   loaded_naive_bayes_model <- readRDS("Models/naive_bayes_model.RDS")
   loaded_knn_model <- readRDS("Models/knn_model.RDS")
