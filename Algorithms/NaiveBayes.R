@@ -124,8 +124,16 @@ dataOfHeartAttack <- read.table(file_path, header = TRUE, sep = ",")
           # Confusion Matrix
           confusionMatrix(data = nb_predictions, reference = test$class, 
                           dnn = c("Predictions", "Actual/Reference"), 
-                          mode = "everything")
+                          mode = "everything",
+                          positive = "positive")
           
+          # The Second Way for Performance Evaluation
+          # install.packages("forecast")
+          library(forecast)
+          actual_values <- ifelse(test$class == "negative", 0, 1)
+          forecast_values <- ifelse(results$nb_predictions == "negative", 0, 1)
+          
+          accuracy(forecast_values, actual_values)          
         # REFERENCES:
           # The dataset is obtained from https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data on December 27, 2023.
           # Sozan S. Maghdid , Tarik A. Rashid. (2023).Heart Disease Classification Dataset (V2 ed.). https://www.kaggle.com/datasets/bharath011/heart-disease-classification-dataset/data
