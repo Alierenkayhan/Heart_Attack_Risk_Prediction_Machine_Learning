@@ -87,7 +87,7 @@ dataOfHeartAttack <- read.table(file_path, header = TRUE, sep = ",")
           library(caret)
           set.seed(1)
    
-          my_indexes <- createDataPartition(y = dataOfHeartAttack$class, p = 0.90, list = FALSE)
+          my_indexes <- createDataPartition(y = dataOfHeartAttack$class, p = 0.70, list = FALSE)
           training <- as.data.frame(dataOfHeartAttack[my_indexes,])
           test <- as.data.frame(dataOfHeartAttack[-my_indexes,])
           
@@ -100,26 +100,25 @@ dataOfHeartAttack <- read.table(file_path, header = TRUE, sep = ",")
           # Applying Naive Bayes algorithm
           # install.packages("e1071")
           library(e1071)
-          naiveB_model <- naiveBayes(class ~ ., data = training)
+          naiveB_model <- naiveBayes(training[,1:8], training[[9]])
           naiveB_model
 
           # Modeli RDS format??nda kaydet
           saveRDS(naiveB_model, "Models/naive_bayes_model.RDS")
           
           # Finding Predictions of The Model
-          (nb_predictions <- predict(naiveB_model, test))
-          (nb_probs <- predict(naiveB_model, test, "raw"))
+          (nb_predictions <- predict(naiveB_model, test[,1:8]))
+          (nb_probs <- predict(naiveB_model, test[,1:8], "raw"))
 
           # Convert test$class to a factor with the same levels
           test$class <- factor(test$class, levels = levels(nb_predictions))
           
           # Create a results data frame
-          results <- data.frame(test, nb_predictions, nb_probs)
+          results <- data.frame(test[[9]], nb_predictions, nb_probs)
           
           # Finding Predictions of The Model
-          my_table <- table(Predictions = nb_predictions, Actual_Reference = test$class)
+          (my_table <- table(nb_predictions, test[[9]], dnn = c("Predictions", "Actual/Reference")))
           print(my_table)
-          
        
           # Confusion Matrix
           confusionMatrix(data = nb_predictions, reference = test$class, 
