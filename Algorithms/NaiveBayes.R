@@ -51,6 +51,17 @@ dataOfHeartAttack <- read.table(file_path, header = TRUE, sep = ",")
     discrete_variables <- sapply(dataOfHeartAttack, function(x) is.factor(x) || is.integer(x))
     discrete_data <- dataOfHeartAttack[, discrete_variables]
     
+# Data Validation
+    
+    # Check for Outliers
+    outlier_threshold <- 3
+    outliers <- boxplot.stats(dataOfHeartAttack$age)$out
+    cat("Outliers in Age:", outliers, "\n")
+    
+    # Check for logical inconsistencies in the data
+    logical_inconsistencies <- subset(dataOfHeartAttack, pressurehight < pressurelow)
+    cat("Rows with illogical pressure values:", nrow(logical_inconsistencies), "\n")
+    
 #Data Visualization
     # install.packages(ggplot2)
     library(ggplot2)
